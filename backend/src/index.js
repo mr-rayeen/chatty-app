@@ -17,7 +17,7 @@ const __dirname = path.resolve();
 
 
 app.use(cors({
-    origin: ["http://localhost:5173", process.env.VERCEL_FRONTEND],
+    origin: ["http://localhost:5173", process.env.FRONTEND],
     credentials: true
 }))
 app.use(
