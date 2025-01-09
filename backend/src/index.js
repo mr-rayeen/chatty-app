@@ -30,7 +30,9 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-
+app.get('/', () => {
+    res.status(200).send("Server is Running OK!");
+})
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
