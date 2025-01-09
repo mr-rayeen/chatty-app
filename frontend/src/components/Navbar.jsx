@@ -47,7 +47,7 @@ const Navbar = () => {
 									<img
 										src={
 											authUser?.profilePic ||
-											"../../public/avatar.png"
+											"/avatar.png"
 										}
 										alt="profile"
 										className="size-5 rounded-full object-cover"

@@ -41,7 +41,7 @@ const ProfilePage = () => {
 								<img
 									src={
 										selectedImg || authUser?.profilePic ||
-										"../../public/avatar.png"
+										"/avatar.png"
 									}
 									alt="profile"
 									className="size-32 rounded-full border-4 object-cover"
