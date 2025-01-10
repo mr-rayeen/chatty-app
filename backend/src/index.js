@@ -17,7 +17,7 @@ const __dirname = path.resolve();
 
 
 app.use(cors({
-    origin: ["http://localhost:5173", process.env.FRONTEND],
+    origin: ["http://localhost:5173", process.env.FRONTEND, "https://chatty-app-eta.vercel.app/"],
     credentials: true
 }))
 app.use(

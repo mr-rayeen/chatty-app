@@ -7,8 +7,13 @@ const app = express();
 const server = http.createServer(app);
 
 const io = new Server(server, {
-    cors: {
-        origin: ["http://localhost:5173", process.env.FRONTEND],
+	cors: {
+		origin: [
+			"http://localhost:5173",
+			process.env.FRONTEND,
+			"https://chatty-app-eta.vercel.app/",
+        ],
+        credentials: true,
     },
 });
 
