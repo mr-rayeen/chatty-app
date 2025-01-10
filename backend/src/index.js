@@ -18,27 +18,28 @@ const __dirname = path.resolve();
 
 app.use(
 	cors({
-		origin: [
-			"http://localhost:5173",
-			"https://chatty-app-eta.vercel.app/",
-			"https://chatty-app-git-main-mr-rayeens-projects.vercel.app/",
-			process.env.FRONTEND,
-		],
+        origin:true,
+        //     [
+		// 	"http://localhost:5173",
+		// 	"https://chatty-app-eta.vercel.app/",
+		// 	"https://chatty-app-git-main-mr-rayeens-projects.vercel.app/",
+		// 	process.env.FRONTEND,
+		// ],
 		credentials: true,
 		methods: ["GET", "POST", "PUT", "DELETE"],
-		allowedHeaders: ["Content-Type", "Authorization"],
-		preflightContinue: false,
-		optionsSuccessStatus: 204,
+		// allowedHeaders: ["Content-Type", "Authorization"],
+		// preflightContinue: false,
+		// optionsSuccessStatus: 204,
 	})
 );
 
 // Explicitly handle preflight requests
-app.options('*', (req, res) => {
-    res.header('Access-Control-Allow-Origin', req.headers.origin);
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.sendStatus(204);
-});
+// app.options('*', (req, res) => {
+//     res.header('Access-Control-Allow-Origin', req.headers.origin);
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//     res.sendStatus(204);
+// });
 
 app.use(
     fileUpload({
