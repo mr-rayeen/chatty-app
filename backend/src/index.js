@@ -26,8 +26,13 @@ app.use(
 		credentials: true,
 		methods: ["GET", "POST", "PUT", "DELETE"],
 		allowedHeaders: ["Content-Type", "Authorization"],
+		preflightContinue: false,
+		optionsSuccessStatus: 204,
 	})
 );
+
+app.options('*', cors()); // Enable pre-flight for all routes
+
 app.use(
     fileUpload({
         limits: { fileSize: 50 * 1024 * 1024 },
