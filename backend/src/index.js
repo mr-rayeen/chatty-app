@@ -30,7 +30,7 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-app.get('/', () => {
+app.get('/', (req,res) => {
     res.status(200).send("Server is Running OK!");
 })
 app.use("/api/auth", authRoutes);
