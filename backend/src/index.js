@@ -20,7 +20,7 @@ app.use(
 	cors({
 		origin: [
 			"http://localhost:5173",
-			"https://chatty-app-eta.vercel.app/api",
+			"https://chatty-app-eta.vercel.app/",
 			process.env.FRONTEND,
 		],
 		credentials: true,
