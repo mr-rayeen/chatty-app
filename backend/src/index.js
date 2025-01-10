@@ -24,18 +24,8 @@ app.use(
 			process.env.FRONTEND,
 		],
 		credentials: true,
-		methods: ["GET", "POST"],
-		handlePreflightRequest: (req, res) => {
-			res.writeHead(200, {
-				"Access-Control-Allow-Origin": req.headers.origin,
-				"Access-Control-Allow-Credentials": "true",
-				"Access-Control-Allow-Methods":
-					"GET, POST, PUT, DELETE, OPTIONS",
-				"Access-Control-Allow-Headers":
-					"Origin, X-Requested-With, Content-Type, Accept, Authorization",
-			});
-			res.end();
-		},
+		methods: ["GET", "POST", "PUT", "DELETE"],
+		allowedHeaders: ["Content-Type", "Authorization"],
 	})
 );
 app.use(
