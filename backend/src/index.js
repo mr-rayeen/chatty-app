@@ -31,7 +31,13 @@ app.use(
 	})
 );
 
-app.options('*', cors()); // Enable pre-flight for all routes
+// Explicitly handle preflight requests
+app.options('*', (req, res) => {
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.sendStatus(204);
+});
 
 app.use(
     fileUpload({
