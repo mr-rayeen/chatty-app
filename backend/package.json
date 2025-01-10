@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "@dicebear/collection": "^9.2.2",
+    "@dicebear/converter": "^9.2.2",
+    "@dicebear/core": "^9.2.2",
+    "axios": "^1.7.9",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.5.1",
     "cookie-parser": "^1.4.7",
@@ -9,6 +13,7 @@
     "express-fileupload": "^1.5.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.3",
+    "parse-data-uri": "^0.2.0",
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
@@ -20,7 +25,7 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "build":"npm install"
+    "build": "npm install"
   },
   "keywords": [],
   "author": "",

@@ -1,3 +1,4 @@
+import avatarCreator from '../lib/avatarCreator.js';
 import cloudinary from '../lib/cloudinary.js';
 import { generateToken } from '../lib/utils.js';
 import User from '../models/user.model.js';
@@ -23,7 +24,11 @@ export const signup = async (req, res) => {
 
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-        const newUser = new User({ email, fullName, password: hashedPassword });
+
+        // const avatarUrl = avatarCreator(fullName);
+        const avatar = `https://api.dicebear.com/9.x/adventurer/svg?seed=${fullName}`
+        
+        const newUser = new User({ email, fullName, password: hashedPassword, profilePic: avatar});
 
         if (newUser) {
             //Generate jwt token
@@ -44,7 +49,7 @@ export const signup = async (req, res) => {
 
 
     } catch (error) {
-        console.log("Error in signup Controller",error.message);
+        console.log("Error in signup Controller",error);
         return res.status(500).json({ message: "Internal Server Error!" });
     }
 
@@ -52,20 +57,20 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res)=>{
     const { email, password } = req.body;
-    console.log(Object.keys(req.body));
+    
     try {
         if (!email || !password) {
             return res.status(400).json({ message: "All fields are required!" });
         }
 
         const user = await User.findOne({ email });
-        console.log("User:",user);
+        
         if (user) {
             const isPasswordMatch = await bcrypt.compare(password, user.password);
 
             if (isPasswordMatch) {
                 generateToken(user._id, res);
-                console.log("User LoggedIn.")
+                
                 return res.status(200).json({
                     message: "User logged in successfully!",
                     user: {
