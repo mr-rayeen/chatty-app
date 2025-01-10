@@ -9,6 +9,7 @@ export const useChatStore = create((set,get) => ({
 	selectedUser: null,
 	isUserLoading: false,
 	isMessageLoading: false,
+	isImageUploading: false,
 
 	getUsers: async () => {
 		set({ isUserLoading: true });
@@ -34,18 +35,29 @@ export const useChatStore = create((set,get) => ({
 		}
     },
     sendMessages: async (messageData)=>{
-        const { selectedUser, messages } = get();
+		const { selectedUser, messages } = get();
+		if (messageData.get("image") !== null)
+			set({ isImageUploading: true });
 
-        try {
-            const res = await axiosInstance.post(`/messages/send/${selectedUser._id}`, messageData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-            set({ messages: [...messages, res.data] });
-        } catch (error) {
-            toast.error(error.response.data.message);
-        }
+			try {
+				const res = await axiosInstance.post(
+					`/messages/send/${selectedUser._id}`,
+					messageData,
+					{
+						headers: {
+							"Content-Type": "multipart/form-data",
+						},
+					}
+				);
+				if (messageData.get("image") !== null)
+					set({ isImageUploading: false });
+
+				set({ messages: [...messages, res.data] });
+			} catch (error) {
+				toast.error(error.response.data.message);
+			} finally {
+				set({ isImageUploading: false });
+			}
     },
 
 	subscribeToMessages: () => {

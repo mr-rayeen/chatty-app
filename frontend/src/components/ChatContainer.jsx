@@ -38,7 +38,7 @@ const ChatContainer = () => {
     );
 
   return (
-		<div className="flex flex-col flex-1 overflow-auto">
+		<div className="flex flex-col w-full lg:flex-1 overflow-auto">
 			<ChatHeader />
 
 			<div

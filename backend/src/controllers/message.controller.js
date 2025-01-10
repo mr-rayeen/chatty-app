@@ -61,11 +61,10 @@ export const sendMessage = async (req, res) => {
         await newMessage.save();
 
         // Realtime functionality of chat will be implemented here
-        // console.log("Message aya  from:",req.user.fullName)
+       
         const receiverSocketId = getReceiverSocketId(receiverId);
         if (receiverSocketId) {
-            // console.log("Receiver ID: ", receiverId);
-            // console.log("Receiver Socket ID: ", receiverSocketId);
+         
             io.to(receiverSocketId).emit("newMessage", newMessage);
         }
         
