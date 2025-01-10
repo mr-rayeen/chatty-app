@@ -17,21 +17,19 @@ const __dirname = path.resolve();
 
 
 app.use(
-    cors(
-        {
-            origin:true,
-            //     [
-			// "http://localhost:5173",
-			// "https://chatty-app-eta.vercel.app/",
-			// process.env.FRONTEND,
-            //     ],
+	cors({
+		origin: [
+			"http://localhost:5173",
+			"https://chatty-app-eta.vercel.app/",
+			"https://chatty-app-git-main-mr-rayeens-projects.vercel.app/",
+			process.env.FRONTEND,
+		],
 		credentials: true,
 		methods: ["GET", "POST", "PUT", "DELETE"],
 		allowedHeaders: ["Content-Type", "Authorization"],
 		preflightContinue: false,
 		optionsSuccessStatus: 204,
-        }
-    )
+	})
 );
 
 // Explicitly handle preflight requests
