@@ -8,25 +8,14 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
 	cors: {
-		origin: [
-			"http://localhost:5173",
-			"https://chatty-app-eta.vercel.app/",
-			process.env.FRONTEND,
-        ],
+        origin: true,
+        //     [
+		// 	"http://localhost:5173",
+		// 	"https://chatty-app-eta.vercel.app/",
+		// 	process.env.FRONTEND,
+        // ],
         credentials: true,
         methods: ["GET", "POST"],
-        handlePreflightRequest: (req, res) => {
-            res.writeHead(200, {
-				"Access-Control-Allow-Origin": req.headers.origin,
-				"Access-Control-Allow-Credentials": "true",
-				"Access-Control-Allow-Methods":
-					"GET, POST, PUT, DELETE, OPTIONS",
-				"Access-Control-Allow-Headers":
-					"Origin, X-Requested-With, Content-Type, Accept, Authorization",
-			});
-			res.end();
-        }
-
     },
 });
 
