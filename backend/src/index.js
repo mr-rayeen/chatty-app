@@ -16,10 +16,28 @@ const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
 
-app.use(cors({
-    origin: ["http://localhost:5173", process.env.FRONTEND, "https://chatty-app-eta.vercel.app/"],
-    credentials: true
-}))
+app.use(
+	cors({
+		origin: [
+			"http://localhost:5173",
+			process.env.FRONTEND,
+			"https://chatty-app-eta.vercel.app/",
+		],
+		credentials: true,
+		methods: ["GET", "POST"],
+		handlePreflightRequest: (req, res) => {
+			res.writeHead(200, {
+				"Access-Control-Allow-Origin": req.headers.origin,
+				"Access-Control-Allow-Credentials": "true",
+				"Access-Control-Allow-Methods":
+					"GET, POST, PUT, DELETE, OPTIONS",
+				"Access-Control-Allow-Headers":
+					"Origin, X-Requested-With, Content-Type, Accept, Authorization",
+			});
+			res.end();
+		},
+	})
+);
 app.use(
     fileUpload({
         limits: { fileSize: 50 * 1024 * 1024 },
